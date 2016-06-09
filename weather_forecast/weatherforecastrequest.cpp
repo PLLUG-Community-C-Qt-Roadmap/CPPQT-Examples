@@ -12,6 +12,7 @@
 #include <QDebug>
 
 const QString WEATHER_API_BASE_URL("http://api.openweathermap.org/data/2.5");
+const QString WEATHER_API_KEY("46b8f2c15f55da3e916db6916ad84736");
 
 const QString REQUEST_WEATHER_FORECAST("forecast/daily");
 
@@ -19,6 +20,7 @@ const QString QUERY_CITY_NAME("q");
 const QString QUERY_UNITS_FORMAT("units");
 const QString QUERY_LANGUAGE("lang");
 const QString QUERY_RESULTS_COUNT("cnt");
+const QString QUERY_APIKEY("APIKEY");
 
 const QString DEFAULT_UNITS_FORMAT("metric");
 const int DEFAULT_RESULTS_COUNT(1);
@@ -64,6 +66,7 @@ void WeatherForecastRequest::slotSend()
     }
     requestQuery.addQueryItem(QUERY_UNITS_FORMAT, DEFAULT_UNITS_FORMAT);
     requestQuery.addQueryItem(QUERY_RESULTS_COUNT, QString::number(mCount));
+    requestQuery.addQueryItem(QUERY_APIKEY, WEATHER_API_KEY);
     requestUrl.setQuery(requestQuery);
 
     qDebug() << QString("Sending request: %1").arg(requestUrl.toString());
